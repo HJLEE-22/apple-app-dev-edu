@@ -128,6 +128,9 @@
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="0bo-b2-SRu">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="162"/>
+                                                    <connections>
+                                                        <action selector="datePickerValueChanged:" destination="wmN-Iv-phc" eventType="valueChanged" id="34v-3i-E4j"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -175,6 +178,9 @@
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="pi8-F7-OWX">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="162"/>
+                                                    <connections>
+                                                        <action selector="datePickerValueChanged:" destination="wmN-Iv-phc" eventType="valueChanged" id="kyB-dr-88o"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>

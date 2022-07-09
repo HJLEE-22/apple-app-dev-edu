@@ -71,6 +71,11 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         updateNumberOfGuests()
         updateRoomType()
         
+        let midnightToday = Calendar.current.startOfDay(for: Date())
+        print(" 미드나잇투데이 : \(midnightToday)")
+        checkInDatePicker.minimumDate = midnightToday
+        checkInDatePicker.date = midnightToday
+        checkOutDatePicker.minimumDate = checkInDatePicker.date.addingTimeInterval(86400)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -100,12 +105,23 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         
         checkInDateLabel.text = dateFormatter.string(from: checkInDatePicker.date)
         checkOutDateLabel.text = dateFormatter.string(from: checkOutDatePicker.date)
-        let midnightToday = Calendar.current.startOfDay(for: Date())
-        print(" 미드나잇투데이 : \(midnightToday)")
-        checkInDatePicker.minimumDate = midnightToday
-        checkInDatePicker.date = midnightToday
-        checkOutDatePicker.minimumDate = checkInDatePicker.date.addingTimeInterval(86400)
+        
+        // 캘린더.커런트 코드를 여기다 작성했었는데, 원래 뷰디드로드 였음. 그럼 무슨 차이일까?
+        // 어차피 이 펑션을 뷰디드로드에서 호출하는데, 작동하는덴 차이 없지 않을까?
+        // 현재 한국 7/9, 기준시간 7/8 15시.
+        // 코드가 여기 있으면 처음 데이트피커 로드될 때 7/8로 잡지 않을까 햇는데 그것도 아니고.
+        // 작동하는데 큰 차이는 없는거같은데.
+//        let midnightToday = Calendar.current.startOfDay(for: Date())
+//        print(" 미드나잇투데이 : \(midnightToday)")
+//        checkInDatePicker.minimumDate = midnightToday
+//        checkInDatePicker.date = midnightToday
+//        checkOutDatePicker.minimumDate = checkInDatePicker.date.addingTimeInterval(86400)
     }
+    
+    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        updateDateViews()
+    }
+    
     
     let checkInDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let checkOutDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
@@ -177,6 +193,10 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
             destinationViewController?.delegate = self
             destinationViewController?.roomType =  roomType
         }
+//                let checkInDate = checkInDatePicker.date
+//                let checkOutDate = checkOutDatePicker.date
+//                print("checkInDate: \(checkInDate)")
+//                print("checkOutDate: \(checkOutDate)")
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
